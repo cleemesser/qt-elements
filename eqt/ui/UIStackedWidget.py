@@ -1,7 +1,7 @@
 from eqt.ui.UIFormWidget import UIFormFactory
-from PySide2 import QtWidgets
-from PySide2.QtCore import Qt
-from PySide2.QtWidgets import QHBoxLayout, QVBoxLayout, QListWidget, QStackedWidget, QWidget
+from qtpy import QtWidgets
+from qtpy.QtCore import Qt
+from qtpy.QtWidgets import QHBoxLayout, QVBoxLayout, QListWidget, QStackedWidget, QWidget
 
 
 class UIStackedWidget(object):

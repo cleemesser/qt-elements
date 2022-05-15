@@ -9,8 +9,8 @@ Created on Wed Feb  6 11:10:36 2019
 #https://www.geeksforgeeks.org/migrate-pyqt5-app-to-pyside2/
 import traceback
 import sys
-from PySide2 import QtCore
-from PySide2.QtCore import Slot
+from qtpy import QtCore
+from qtpy.QtCore import Slot
 
 class Worker(QtCore.QRunnable):
     """Worker: defines a QRunnable to execute a function asynchronously. It handles worker thread setup, signals and wrapup."""
