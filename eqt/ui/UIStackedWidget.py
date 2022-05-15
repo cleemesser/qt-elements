@@ -107,12 +107,11 @@ class UIStackedWidget(object):
             FormWidget is created'''
 
         if title is None:
-            if number_title:
-                title_num = len(self.tabs) + 1
-                title = "{} - {}".format(str(title_num), label)
-            else:
+            if not number_title:
                 raise Exception('''The title of the tab has not been set.
                     Please set title - this must be a string, or set number_title to True.''')
+            title_num = len(self.tabs) + 1
+            title = f"{str(title_num)} - {label}"
         self.stack_list.addItem(title)
 
         if widget == 'form':
@@ -199,8 +198,8 @@ class StackedWidgetFactory(QWidget):
     main_window.addDockWidget(QtCore.Qt.RightDockWidgetArea, dockWidget)
     '''
 
-    def getQDockWidget(parent=None, title=None, layout='vertical'):
-        return StackedDockWidget(parent, title, layout)
+    def getQDockWidget(self, title=None, layout='vertical'):
+        return StackedDockWidget(self, title, layout)
 
-    def getQWidget(parent=None, layout='vertical'):
-        return StackedWidget(parent, layout)
+    def getQWidget(self, layout='vertical'):
+        return StackedWidget(self, layout)

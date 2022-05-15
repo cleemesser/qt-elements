@@ -21,17 +21,15 @@ def version2pep440(version):
     if version[0] == 'v':
         version = version[1:]
 
-    if u'-' in version:
-        v = version.split('-')
-        v_pep440 = "{}.dev{}".format(v[0], v[1])
-    else:
-        v_pep440 = version
+    if u'-' not in version:
+        return version
 
-    return v_pep440
+    v = version.split('-')
+    return f"{v[0]}.dev{v[1]}"
 
 
 git_version_string = subprocess.check_output('git describe', shell=True).decode("utf-8").rstrip()[1:]
-    
+
 
 #with open("README.rst", "r") as fh:
 #    long_description = fh.read()
@@ -44,7 +42,7 @@ if os.environ.get('CONDA_BUILD', 0) == '1':
     cwd = os.path.join(os.environ.get('RECIPE_DIR'),'..')
 else:
     install_requires = [
-    
+
         'sphinx',
         'pyside2'
 
@@ -52,8 +50,8 @@ else:
     version = version2pep440(git_version_string)
     cwd = os.getcwd()
 
-    
-print ('version {}'.format(version))
+
+print(f'version {version}')
 print(cwd)
 fname = os.path.join(cwd, 'eqt', 'version.py')
 print("write version at: ", fname)
@@ -61,7 +59,7 @@ print("write version at: ", fname)
 if os.path.exists(fname):
     os.remove(fname)
 with open(fname, 'w') as f:
-    f.write("version = \"{}\"".format(version))
+    f.write(f'version = "{version}"')
 name = "eqt"
 
 setup(name=name,
