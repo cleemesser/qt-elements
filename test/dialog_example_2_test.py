@@ -8,11 +8,7 @@ from eqt.ui import UIFormFactory, FormDialog
 import unittest
 
 # skip the tests on GitHub actions
-if os.environ.get('CONDA_BUILD', '0') == '1':
-    skip_as_conda_build = True
-else:
-    skip_as_conda_build = False
-
+skip_as_conda_build = os.environ.get('CONDA_BUILD', '0') == '1'
 print ("skip_as_conda_build is set to ", skip_as_conda_build)
 
 class MainUI(QtWidgets.QMainWindow):

@@ -78,12 +78,12 @@ class UIFormWidget(object):
         widgetno = self.num_widgets
 
         # add the field
-        field = '{}_field'.format(name)
+        field = f'{name}_field'
         self.widgets[field] = qwidget
 
         if qlabel is not None:
             # add the label
-            label = '{}_label'.format(name)
+            label = f'{name}_label'
             if isinstance(qlabel, str):
                 txt = qlabel
                 qlabel = QtWidgets.QLabel(self.uiElements['groupBox'])

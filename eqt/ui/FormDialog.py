@@ -57,7 +57,9 @@ class FormDialog(QtWidgets.QDialog):
                 raise ValueError('To add the widget to the form, please set label.')
             self.formWidget.addWidget(qwidget, qlabel, name)
         else:
-           raise ValueError("layout {} is not recognised, must be set to 'form' or 'vertical'.".format(layout))  
+            raise ValueError(
+                f"layout {layout} is not recognised, must be set to 'form' or 'vertical'."
+            )  
 
     def addSpanningWidget(self, qwidget, name=None, layout='form'):
         '''
@@ -75,7 +77,9 @@ class FormDialog(QtWidgets.QDialog):
                 raise ValueError('To add the widget to the form, please set name.')
             self.formWidget.addSpanningWidget(qwidget, name)
         else:
-            raise ValueError("layout {} is not recognised, must be set to 'form' or 'vertical'.".format(layout))
+            raise ValueError(
+                f"layout {layout} is not recognised, must be set to 'form' or 'vertical'."
+            )
     
     def insertWidget(self, index, qwidget):
         '''inserts a widget to the vertical layout at the specific index'''
