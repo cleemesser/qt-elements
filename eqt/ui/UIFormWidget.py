@@ -153,12 +153,28 @@ class FormWidgetState(FormWidget):
         # QSlider, ?QtextBrowser, QTreeWidget
         return state
 
+    def set_form_from_state(self, state: dict):
+        """give ability to set gui elements state using a dictionary
+        compatible with what is returned by get_state()"""
+        fields = {
+            ii: self.widgets[ii] for ii in self.widgets if str(ii).endswith("_field")
+        }
+        flen = len("_field")
+        for key, widget in fields.items():
+            state_key = key[:-flen]  # original widget name is xxxx_field
+            if state_key in state:
+                if widget.__class__.__name__ in ["QCheckBox"]:
+                    widget.setChecked(state[state_key])
+                if widget.__class__.__name__ in ["QLineEdit"]:
+                    widget.setText(state[state_key])
+
     def reset_form(self):
+        """default way to reset the gui elements of form"""
         fields = {
             ii: self.widgets[ii] for ii in self.widgets if str(ii).endswith("_field")
         }
         for kk, ww in fields.items():
-
+            # print(f"reset form, fields iteration {ww.__class__.__name__}") # debug
             if ww.__class__.__name__ in ["QCheckBox"]:
                 # ww.setCheckState(Qt.CheckState.UnChecked)
                 ww.setChecked(False)
